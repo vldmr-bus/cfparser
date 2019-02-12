@@ -26,7 +26,21 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+		<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+				<configuration>
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+					<argLine>-Xmx2048m -XX:MaxPermSize=256m</argLine>
+					<useSystemClassLoader>false</useSystemClassLoader><!-- https://stackoverflow.com/questions/50661648/spring-boot-fails-to-run-maven-surefire-plugin-classnotfoundexception-org-apache/50661649#50661649 -->
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
